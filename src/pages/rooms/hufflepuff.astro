@@ -1,0 +1,11 @@
+---
+import Base from "../../layouts/Base.astro";
+import rooms from "../../content/rooms.json";
+const room = rooms.find(r => r.slug === "hufflepuff");
+---
+<Base title={room.name}>
+  <h1>{room.name}</h1>
+  <p>{room.summary}</p>
+  <iframe src={room.calendarEmbedUrl} width="100%" height="600"></iframe>
+  <p><a href={`/request?room=${room.name}`}>Request this room</a></p>
+</Base>

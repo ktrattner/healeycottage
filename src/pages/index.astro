@@ -1,0 +1,16 @@
+---
+import Base from "../layouts/Base.astro";
+import rooms from "../content/rooms.json";
+---
+<Base>
+  <h1>Healey Cottage</h1>
+  <p>Check availability and request a stay.</p>
+
+  <ul>
+    {rooms.map(r => (
+      <li>
+        <a href={`/rooms/${r.slug}`}>{r.name}</a>
+      </li>
+    ))}
+  </ul>
+</Base>

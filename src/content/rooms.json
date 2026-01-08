@@ -1,0 +1,29 @@
+[
+  {
+    "slug": "gryffindor",
+    "name": "Gryffindor",
+    "bed": "King",
+    "sleeps": 2,
+    "summary": "King bed. Calm, bright, and easy to settle into.",
+    "image": "/images/gryffindor.jpg",
+    "calendarEmbedUrl": "https://calendar.google.com/calendar/embed?src=c_08692d5205f8c5b8b7f7a2ccf9e10ee5101960ea9df40447feac59db88c3b3a5@group.calendar.google.com&ctz=America/Toronto"
+  },
+  {
+    "slug": "hufflepuff",
+    "name": "Hufflepuff",
+    "bed": "Queen",
+    "sleeps": 2,
+    "summary": "Queen bed. Cozy and quiet.",
+    "image": "/images/hufflepuff.jpg",
+    "calendarEmbedUrl": "https://calendar.google.com/calendar/embed?src=c_fc75a6aa5d3d70223c225dac5d102fb1c8320c9fc389b1ae88d85b797bd685ab@group.calendar.google.com&ctz=America/Toronto"
+  },
+  {
+    "slug": "ravenclaw",
+    "name": "Ravenclaw",
+    "bed": "Queen",
+    "sleeps": 2,
+    "summary": "Queen bed. Great for reading and relaxing.",
+    "image": "/images/ravenclaw.jpg",
+    "calendarEmbedUrl": "https://calendar.google.com/calendar/embed?src=c_37a015d269eb93ed78c238ecccdf74db15453079c3f2e40463ab7758fdbe5eb0@group.calendar.google.com&ctz=America/Toronto"
+  }
+]

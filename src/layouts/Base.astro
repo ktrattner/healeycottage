@@ -1,0 +1,22 @@
+---
+const { title = "Healey Cottage" } = Astro.props;
+---
+<!doctype html>
+<html lang="en-CA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+</head>
+<body>
+  <nav>
+    <a href="/">Healey Cottage</a>
+    <a href="/rooms">Rooms</a>
+    <a href="/availability">Availability</a>
+    <a href="/request">Request</a>
+  </nav>
+  <main>
+    <slot />
+  </main>
+</body>
+</html>
