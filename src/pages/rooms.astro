@@ -1,0 +1,92 @@
+---
+import Base from "../layouts/Base.astro";
+import rooms from "../content/rooms.json";
+---
+
+<Base title="Rooms | Healey Cottage">
+  <h1>Rooms</h1>
+  <p class="muted">
+    Each room sleeps two. Availability is shown as busy blocks only. Requests require approval.
+  </p>
+
+  <div class="grid">
+    {rooms.map((r) => (
+      <a class="roomCard" href={`/rooms/${r.slug}`}>
+        <div class="cardTop">
+          <h2>{r.name}</h2>
+          <span class="pill">Sleeps {r.sleeps}</span>
+        </div>
+
+        <p class="muted">{r.bed} bed</p>
+
+        <div class="cardActions">
+          <span class="link">View details</span>
+          <span class="link">Request</span>
+        </div>
+      </a>
+    ))}
+  </div>
+
+  <style>
+    .grid {
+      margin-top: 18px;
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 860px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .roomCard {
+      display: block;
+      text-decoration: none;
+      border: 1px solid rgba(0,0,0,.12);
+      border-radius: 16px;
+      padding: 16px;
+      background: #fff;
+      transition: border-color .15s ease, transform .15s ease;
+    }
+
+    .roomCard:hover {
+      border-color: rgba(0,0,0,.28);
+      transform: translateY(-1px);
+    }
+
+    .cardTop {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .cardTop h2 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .pill {
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,.12);
+      opacity: .9;
+      white-space: nowrap;
+    }
+
+    .cardActions {
+      margin-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      opacity: .85;
+    }
+
+    .link {
+      text-decoration: none;
+    }
+  </style>
+</Base>

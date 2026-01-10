@@ -2,15 +2,116 @@
 import Base from "../layouts/Base.astro";
 import rooms from "../content/rooms.json";
 ---
-<Base>
-  <h1>Healey Cottage</h1>
-  <p>Check availability and request a stay.</p>
 
-  <ul>
-    {rooms.map(r => (
-      <li>
-        <a href={`/rooms/${r.slug}`}>{r.name}</a>
-      </li>
-    ))}
-  </ul>
+<Base title="Healey Cottage">
+  <main>
+    <section class="hero">
+      <div class="heroText">
+        <p class="kicker">Kyle & Brandon Welcome You</p>
+        <h1>Book Your Visit</h1>
+        <p class="sub">
+          Check availability, then send a request. We’ll confirm by email.
+        </p>
+
+        <div class="ctaRow">
+          <a class="btn primary" href="/availability">View availability</a>
+          <a class="btn" href="/request">Request a stay</a>
+        </div>
+
+      </div>
+
+      <div class="heroImage">
+        <img
+          src="/images/cottage-summer.jpg"
+          alt="Healey Cottage exterior in summer"
+          loading="eager"
+        />
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="sectionHead">
+        <h2>Rooms</h2>
+        <a class="link" href="/rooms">See all</a>
+      </div>
+
+      <div class="grid">
+        {rooms.map((r) => (
+          <a class="roomCard" href={`/rooms/${r.slug}`}>
+            <div class="roomTop">
+              <h3>{r.name}</h3>
+              <span class="pill">Sleeps {r.sleeps}</span>
+            </div>
+            <p class="muted">{r.bed} bed</p>
+            <div class="roomBottom">
+              <span class="link">View room</span>
+              <span class="link">Request</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>How it works</h2>
+      <ol class="steps">
+        <li><b>Check availability.</b> Busy blocks only, no details.</li>
+        <li><b>Submit a request.</b> Choose a room and dates.</li>
+        <li><b>We approve or decline.</b> You’ll get an email either way.</li>
+      </ol>
+    </section>
+  </main>
+
+  <style>
+    .hero { margin-top: 12px; }
+    .hero { display: grid; gap: 18px; grid-template-columns: 1.35fr 0.65fr; align-items: start; }
+    @media (max-width: 860px) { .hero { grid-template-columns: 1fr; } }
+
+    .kicker { letter-spacing: .08em; text-transform: uppercase; font-size: 12px; opacity: .7; margin: 0 0 10px; }
+    h1 { font-size: 44px; line-height: 1.08; margin: 0 0 12px; }
+    @media (max-width: 560px) { h1 { font-size: 36px; } }
+
+    .sub { font-size: 18px; opacity: .85; margin: 0 0 18px; max-width: 56ch; }
+    .ctaRow { display: flex; gap: 10px; flex-wrap: wrap; margin: 0 0 14px; }
+    .fine { font-size: 13px; opacity: .7; margin: 0; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 10px 14px; border-radius: 12px; border: 1px solid rgba(0,0,0,.12); text-decoration: none; }
+    .btn.primary { background: #111; color: #fff; border-color: #111; }
+
+    .heroCard { border: 1px solid rgba(0,0,0,.12); border-radius: 16px; padding: 16px; }
+    .heroCard h2 { font-size: 16px; margin: 0 0 10px; }
+    .heroCard ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+    .heroCard a { text-decoration: none; }
+
+    .heroImage {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,.12);
+    }
+
+    .heroImage img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .section { margin-top: 30px; }
+    .sectionHead { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+    .sectionHead h2 { margin: 0; }
+    .link { opacity: .85; text-decoration: none; }
+
+    .grid { display: grid; gap: 12px; grid-template-columns: repeat(3, 1fr); margin-top: 12px; }
+    @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+
+    .roomCard { border: 1px solid rgba(0,0,0,.12); border-radius: 16px; padding: 14px; text-decoration: none; display: block; }
+    .roomCard:hover { border-color: rgba(0,0,0,.28); }
+    .roomTop { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .roomTop h3 { margin: 0; font-size: 16px; }
+    .pill { font-size: 12px; padding: 4px 8px; border-radius: 999px; border: 1px solid rgba(0,0,0,.12); opacity: .9; }
+    .muted { opacity: .7; margin: 8px 0 0; }
+    .roomBottom { display: flex; justify-content: space-between; margin-top: 12px; font-size: 13px; opacity: .85; }
+
+    .steps { margin: 12px 0 0; padding-left: 18px; display: grid; gap: 8px; }
+  </style>
 </Base>

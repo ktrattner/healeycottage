@@ -1,0 +1,134 @@
+---
+import Base from "../layouts/Base.astro";
+import rooms from "../content/rooms.json";
+const roomParam = Astro.url.searchParams.get("room") ?? "";
+const sent = Astro.url.searchParams.get("sent");
+---
+
+<Base title="Request a stay | Healey Cottage">
+  <h1>Request a stay</h1>
+  {sent && (
+    <div class="banner success" role="status" aria-live="polite">
+      Request received. You’ll get an email once it’s approved or declined.
+    </div>
+  )}
+  <p class="muted">Submit a request. Approval required.</p>
+
+  <form
+    class="form"
+    method="post"
+    action="https://script.google.com/macros/s/AKfycbxk5t8FBX7jYFcBe1M7rGxKQA-4GjMn7jnGW4A6MsiRugi_q7Bho0FuPlmOSbpJ49bxHQ/exec"
+  >
+    <label>
+      Name
+      <input name="name" autocomplete="name" placeholder="Your name" required />
+    </label>
+
+    <label>
+      Email
+      <input name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+    </label>
+
+    <label>
+      Room
+      <select name="room" required>
+        <option value="" disabled selected={roomParam === ""}>Select a room</option>
+        {rooms.map((r) => (
+          <option value={r.name} selected={roomParam.toLowerCase() === r.name.toLowerCase()}>
+            {r.name}
+          </option>
+        ))}
+      </select>
+      <p class="help">Only busy blocks are shown publicly. Details stay private.</p>
+    </label>
+
+    <div class="row">
+      <label>
+        Check-in
+        <input name="checkIn" type="date" required />
+      </label>
+
+      <label>
+        Check-out
+        <input name="checkOut" type="date" required />
+      </label>
+    </div>
+
+    <label>
+      Notes (optional)
+      <textarea name="notes" rows="4" placeholder="Anything we should know? Timing flexibility, special requests, etc."></textarea>
+    </label>
+
+    <button type="submit">Submit request</button>
+  </form>
+
+  <style>
+    .banner {
+      border: 1px solid rgba(0,0,0,.12);
+      border-radius: 14px;
+      padding: 10px 12px;
+      margin: 12px 0 14px;
+    }
+    .banner.success {
+      border-color: rgba(22,163,74,.35);
+      background: rgba(22,163,74,.08);
+    }
+
+    .form {
+      margin-top: 14px;
+      border: 1px solid rgba(0,0,0,.12);
+      border-radius: 16px;
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+      max-width: 640px;
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    input, select, textarea {
+      font: inherit;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,.14);
+      background: #fff;
+    }
+
+    textarea { resize: vertical; }
+
+    .help {
+      margin: 6px 0 0;
+      font-weight: 400;
+      font-size: 13px;
+      color: rgba(0,0,0,.68);
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 640px) {
+      .row { grid-template-columns: 1fr; }
+    }
+
+    button[type="submit"] {
+      justify-self: start;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,.12);
+      background: #111;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button[type="submit"]:hover {
+      filter: brightness(1.05);
+    }
+  </style>
+</Base>
