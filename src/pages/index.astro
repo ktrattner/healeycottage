@@ -3,14 +3,17 @@ import Base from "../layouts/Base.astro";
 import rooms from "../content/rooms.json";
 ---
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:opsz,wght@5..120,500&display=swap" rel="stylesheet">
+
 <Base title="Healey Cottage">
   <main>
     <section class="hero">
       <div class="heroText">
-        <p class="kicker">Kyle & Brandon Welcome You</p>
-        <h1>Book Your Visit</h1>
+        <h1>Stay at Healey Cottage</h1>
         <p class="sub">
-          Check availability, then send a request. We’ll confirm by email.
+          Check availability, choose a room, and send a request. We’ll confirm by email.
         </p>
 
         <div class="ctaRow">
@@ -67,11 +70,17 @@ import rooms from "../content/rooms.json";
     .hero { display: grid; gap: 18px; grid-template-columns: 1.35fr 0.65fr; align-items: start; }
     @media (max-width: 860px) { .hero { grid-template-columns: 1fr; } }
 
-    .kicker { letter-spacing: .08em; text-transform: uppercase; font-size: 12px; opacity: .7; margin: 0 0 10px; }
-    h1 { font-size: 44px; line-height: 1.08; margin: 0 0 12px; }
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 44px;
+      line-height: 1.08;
+      margin: 0 0 12px;
+      letter-spacing: -0.01em;
+    }
     @media (max-width: 560px) { h1 { font-size: 36px; } }
 
-    .sub { font-size: 18px; opacity: .85; margin: 0 0 18px; max-width: 56ch; }
+    .sub { font-size: 14px; opacity: .8; margin: 0 0 18px; max-width: 56ch; }
+    @media (min-width: 861px) { .sub { max-width: none; } }
     .ctaRow { display: flex; gap: 10px; flex-wrap: wrap; margin: 0 0 14px; }
     .fine { font-size: 13px; opacity: .7; margin: 0; }
 

@@ -10,7 +10,7 @@ const { title = "Healey Cottage" } = Astro.props;
   <meta name="description" content="Healey Cottage: check availability and request a stay (approval required)." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Hurricane&display=swap" rel="stylesheet">
 
   <link
     rel="stylesheet"
@@ -41,7 +41,9 @@ const { title = "Healey Cottage" } = Astro.props;
       line-height: 1.45;
     }
 
-    a { color: inherit; }
+    a:link,
+    a:visited { color: inherit; }
+
     a:hover { text-decoration: underline; }
 
     .container {
@@ -86,10 +88,10 @@ const { title = "Healey Cottage" } = Astro.props;
     }
 
     .brandText {
-      font-family: "Merriweather", serif;
+      font-family: "Hurricane", cursive;
       font-weight: 400;
-      font-size: 18px;
-      letter-spacing: 0.02em;
+      font-size: 32px;
+      letter-spacing: 0.04em;
     }
 
     .navLinks {
@@ -104,6 +106,10 @@ const { title = "Healey Cottage" } = Astro.props;
       padding: 8px 10px;
       border-radius: 10px;
       border: 1px solid transparent;
+      color: var(--muted);
+    }
+
+    .navLinks a:visited {
       color: var(--muted);
     }
 
@@ -134,7 +140,7 @@ const { title = "Healey Cottage" } = Astro.props;
       <nav class="nav" aria-label="Primary">
         <a class="brand" href="/">
           <span class="brandText">
-            HEALEY<i class="fa-brands fa-pagelines" aria-hidden="true"></i>COTTAGE
+            Healey Cottage
           </span>
         </a>
         <div class="navLinks">

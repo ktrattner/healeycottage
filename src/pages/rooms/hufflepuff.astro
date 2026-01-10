@@ -1,11 +1,161 @@
 ---
 import Base from "../../layouts/Base.astro";
 import rooms from "../../content/rooms.json";
-const room = rooms.find(r => r.slug === "hufflepuff");
+
+const room = rooms.find((r) => r.slug === "hufflepuff");
+const title = room?.name ?? "Hufflepuff";
 ---
-<Base title={room.name}>
-  <h1>{room.name}</h1>
-  <p>{room.summary}</p>
-  <iframe src={room.calendarEmbedUrl} width="100%" height="600"></iframe>
-  <p><a href={`/request?room=${room.name}`}>Request this room</a></p>
+
+<Base title={`${title} | Healey Cottage`}>
+  <header class="head">
+    <div>
+      <h1>{title}</h1>
+      <p class="muted">
+        Cozy queen room tucked beside the window. Ideal for solo travellers and comfortable for two.
+      </p>
+    </div>
+
+    <a class="btn" href={`/request?room=${encodeURIComponent(title)}`}>Request Hufflepuff</a>
+  </header>
+
+  <section class="photos" aria-label="Room photos">
+    <div class="photoCard">
+      <div class="ph" aria-hidden="true"></div>
+      <p class="cap muted">Photo 1: Sleeping nook</p>
+    </div>
+
+    <div class="photoCard">
+      <div class="ph" aria-hidden="true"></div>
+      <p class="cap muted">Photo 2: Window view</p>
+    </div>
+
+    <div class="photoCard">
+      <div class="ph" aria-hidden="true"></div>
+      <p class="cap muted">Photo 3: Shared bath</p>
+    </div>
+  </section>
+
+  <section class="details card">
+    <h2>At a glance</h2>
+    <ul>
+      <li><b>Bed:</b> Queen</li>
+      <li><b>Best for:</b> Solo travellers (comfortable for two)</li>
+      <li><b>Bathroom:</b> Shared hall bathroom (shower and toilet)</li>
+      <li><b>Shared with:</b> Ravenclaw guests</li>
+    </ul>
+
+    <div class="note">
+      <p class="muted">
+        Availability is shown as busy blocks only. To book, submit a request and we’ll confirm by email.
+      </p>
+      <p>
+        <a href="/availability">View availability</a>
+        <span> · </span>
+        <a href={`/request?room=${encodeURIComponent(title)}`}>Request this room</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="cal">
+    <h2>Busy calendar</h2>
+    <p class="muted">Public view shows busy blocks only (no details).</p>
+    <iframe
+      class="frame"
+      src={room?.calendarEmbedUrl}
+      width="100%"
+      height="560"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </section>
+
+  <style>
+    .head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    h1 { margin: 0; }
+    .head .muted { margin: 8px 0 0; max-width: 68ch; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,.12);
+      background: #111;
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn:hover { filter: brightness(1.05); text-decoration: none; }
+
+    .photos {
+      margin-top: 18px;
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 900px) {
+      .photos { grid-template-columns: 1fr; }
+    }
+
+    .photoCard {
+      border: 1px solid rgba(0,0,0,.12);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .ph {
+      aspect-ratio: 4 / 3;
+      background: linear-gradient(135deg, rgba(0,0,0,.06), rgba(0,0,0,.02));
+    }
+
+    .cap {
+      margin: 0;
+      padding: 10px 12px;
+      font-size: 13px;
+    }
+
+    .details {
+      margin-top: 18px;
+    }
+
+    .details h2 {
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+
+    .details ul {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .note {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(0,0,0,.12);
+    }
+
+    .cal {
+      margin-top: 22px;
+    }
+
+    .frame {
+      margin-top: 10px;
+      border: 1px solid rgba(0,0,0,.12);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+  </style>
 </Base>

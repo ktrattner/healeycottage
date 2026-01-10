@@ -1,7 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
 import rooms from "../content/rooms.json";
-const roomParam = Astro.url.searchParams.get("room") ?? "";
 const sent = Astro.url.searchParams.get("sent");
 ---
 
@@ -19,6 +18,14 @@ const sent = Astro.url.searchParams.get("sent");
     method="post"
     action="https://script.google.com/macros/s/AKfycbxk5t8FBX7jYFcBe1M7rGxKQA-4GjMn7jnGW4A6MsiRugi_q7Bho0FuPlmOSbpJ49bxHQ/exec"
   >
+    <div class="hp" aria-hidden="true">
+      <label>
+        Website
+        <input name="website" autocomplete="off" tabindex="-1" />
+      </label>
+    </div>
+    <input type="hidden" name="ts" id="tsField" value="" />
+
     <label>
       Name
       <input name="name" autocomplete="name" placeholder="Your name" required />
@@ -31,12 +38,10 @@ const sent = Astro.url.searchParams.get("sent");
 
     <label>
       Room
-      <select name="room" required>
-        <option value="" disabled selected={roomParam === ""}>Select a room</option>
+      <select id="roomSelect" name="room" required>
+        <option value="" disabled selected>Select a room</option>
         {rooms.map((r) => (
-          <option value={r.name} selected={roomParam.toLowerCase() === r.name.toLowerCase()}>
-            {r.name}
-          </option>
+          <option value={r.name}>{r.name}</option>
         ))}
       </select>
       <p class="help">Only busy blocks are shown publicly. Details stay private.</p>
@@ -61,6 +66,37 @@ const sent = Astro.url.searchParams.get("sent");
 
     <button type="submit">Submit request</button>
   </form>
+
+  <script is:inline define:vars={{ rooms }}>
+    (() => {
+      const select = document.getElementById("roomSelect");
+      if (!select) return;
+
+      const ts = document.getElementById("tsField");
+      if (ts) ts.value = String(Date.now());
+
+      const params = new URLSearchParams(window.location.search);
+      const raw = (params.get("room") || "").trim();
+      if (!raw) return;
+
+      const norm = raw.toLowerCase();
+
+      // Build a mapping of slugs and names (case-insensitive) to the option value (room name)
+      const roomMap = new Map(
+        (rooms || [])
+          .map((r) => [
+            [String(r.name).trim().toLowerCase(), r.name],
+            [String(r.slug).trim().toLowerCase(), r.name],
+          ])
+          .flat()
+      );
+
+      const desired = roomMap.get(norm);
+      if (!desired) return;
+
+      select.value = desired;
+    })();
+  </script>
 
   <style>
     .banner {
@@ -119,16 +155,26 @@ const sent = Astro.url.searchParams.get("sent");
 
     button[type="submit"] {
       justify-self: start;
-      padding: 10px 14px;
-      border-radius: 12px;
+      padding: 14px 20px;
+      border-radius: 14px;
       border: 1px solid rgba(0,0,0,.12);
       background: #111;
       color: #fff;
       font-weight: 600;
+      font-size: 15px;
       cursor: pointer;
     }
     button[type="submit"]:hover {
       filter: brightness(1.05);
+    }
+
+    .hp {
+      position: absolute;
+      left: -10000px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
     }
   </style>
 </Base>

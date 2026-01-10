@@ -3,22 +3,87 @@ import Base from "../../layouts/Base.astro";
 ---
 
 <Base title="Request received | Healey Cottage">
-  <h1>Request received</h1>
+  <header class="head">
+    <div>
+      <h1>Request received</h1>
+      <p class="muted">
+        Thanks. Your request has been recorded and is pending approval.
+      </p>
+    </div>
+    <a class="btn" href="/availability">View availability</a>
+  </header>
 
-  <p>
-    Thanks. Your request has been recorded and is pending approval.
-  </p>
+  <section class="card">
+    <h2>What happens next</h2>
+    <ol class="steps">
+      <li><b>We review your request.</b> If anything’s unclear, we’ll reach out.</li>
+      <li><b>You’ll get an email.</b> We’ll approve or decline by email.</li>
+      <li><b>If approved, we block the calendar.</b> Busy blocks only are shown publicly.</li>
+    </ol>
 
-  <h2>What happens next</h2>
-  <ul>
-    <li>You’ll get an email once your request is approved or declined.</li>
-    <li>If approved, the dates will be blocked on the room calendar.</li>
-    <li>If we need clarification (timing, room choice, overlap), we’ll reach out.</li>
-  </ul>
+    <div class="actions">
+      <a class="linkBtn" href="/request">Submit another request</a>
+      <a class="linkBtn" href="/rooms">Browse rooms</a>
+    </div>
+  </section>
 
-  <p style="margin-top: 18px;">
-    <a href="/availability">Back to availability</a>
-    <span> · </span>
-    <a href="/rooms">Browse rooms</a>
-  </p>
+  <style>
+    .head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    h1 { margin: 0; }
+    .head .muted { margin: 8px 0 0; max-width: 70ch; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,.12);
+      background: #111;
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn:hover { filter: brightness(1.05); text-decoration: none; }
+
+    h2 { margin: 0 0 10px; font-size: 16px; }
+
+    .steps {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .actions {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(0,0,0,.12);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .linkBtn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,.12);
+      text-decoration: none;
+      background: rgba(0,0,0,.04);
+      font-size: 13px;
+    }
+    .linkBtn:hover { background: rgba(0,0,0,.06); text-decoration: none; }
+  </style>
 </Base>
