@@ -16,7 +16,7 @@ const sent = Astro.url.searchParams.get("sent");
   <form
     class="form"
     method="post"
-    action="https://script.google.com/macros/s/AKfycbxk5t8FBX7jYFcBe1M7rGxKQA-4GjMn7jnGW4A6MsiRugi_q7Bho0FuPlmOSbpJ49bxHQ/exec"
+    action={import.meta.env.PUBLIC_APPS_SCRIPT_URL}
   >
     <div class="hp" aria-hidden="true">
       <label>

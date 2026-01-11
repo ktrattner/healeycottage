@@ -46,6 +46,37 @@ const { title = "Healey Cottage" } = Astro.props;
 
     a:hover { text-decoration: underline; }
 
+    /* Global button styles */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,.12);
+      text-decoration: none;
+      background: transparent;
+      color: inherit;
+      font-weight: 600;
+      transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+    }
+
+    .btn:hover {
+      text-decoration: none;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    }
+
+    .btn.primary {
+      background: #111;
+      color: #fff;
+      border-color: #111;
+    }
+
+    .btn.primary:hover {
+      filter: brightness(1.05);
+    }
+
     .container {
       max-width: var(--max);
       margin: 0 auto;
@@ -90,8 +121,9 @@ const { title = "Healey Cottage" } = Astro.props;
     .brandText {
       font-family: "Hurricane", cursive;
       font-weight: 400;
-      font-size: 32px;
+      font-size: clamp(26px, 6vw, 32px);
       letter-spacing: 0.04em;
+      white-space: nowrap;
     }
 
     .navLinks {
