@@ -14,7 +14,7 @@ const sent = Astro.url.searchParams.get("sent");
   <p class="muted">Submit a request. Approval required.</p>
 
   <form
-    class="form"
+    class="form card"
     method="post"
     action={import.meta.env.PUBLIC_APPS_SCRIPT_URL}
   >
@@ -47,7 +47,7 @@ const sent = Astro.url.searchParams.get("sent");
       <p class="help">Only busy blocks are shown publicly. Details stay private.</p>
     </label>
 
-    <div class="row">
+    <div class="dateRow">
       <label>
         Check-in
         <input name="checkIn" type="date" required />
@@ -64,7 +64,7 @@ const sent = Astro.url.searchParams.get("sent");
       <textarea name="notes" rows="4" placeholder="Anything we should know? Timing flexibility, special requests, etc."></textarea>
     </label>
 
-    <button type="submit">Submit request</button>
+    <button type="submit" class="btn primary">Submit request</button>
   </form>
 
   <script is:inline define:vars={{ rooms }}>
@@ -100,21 +100,19 @@ const sent = Astro.url.searchParams.get("sent");
 
   <style>
     .banner {
-      border: 1px solid rgba(0,0,0,.12);
-      border-radius: 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
       padding: 10px 12px;
       margin: 12px 0 14px;
+      background: var(--card);
     }
     .banner.success {
-      border-color: rgba(22,163,74,.35);
-      background: rgba(22,163,74,.08);
+      border-color: var(--accent-border);
+      background: var(--accent-bg);
     }
 
     .form {
       margin-top: 14px;
-      border: 1px solid rgba(0,0,0,.12);
-      border-radius: 16px;
-      padding: 16px;
       display: grid;
       gap: 12px;
       max-width: 640px;
@@ -141,31 +139,23 @@ const sent = Astro.url.searchParams.get("sent");
       margin: 6px 0 0;
       font-weight: 400;
       font-size: 13px;
-      color: rgba(0,0,0,.68);
+      color: var(--muted);
     }
 
-    .row {
+    .dateRow {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
     @media (max-width: 640px) {
-      .row { grid-template-columns: 1fr; }
+      .dateRow { grid-template-columns: 1fr; }
     }
 
-    button[type="submit"] {
+    .form .btn {
       justify-self: start;
-      padding: 14px 20px;
-      border-radius: 14px;
-      border: 1px solid rgba(0,0,0,.12);
-      background: #111;
-      color: #fff;
-      font-weight: 600;
+      width: fit-content;
+      padding: 12px 18px;
       font-size: 15px;
-      cursor: pointer;
-    }
-    button[type="submit"]:hover {
-      filter: brightness(1.05);
     }
 
     .hp {

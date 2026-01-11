@@ -15,7 +15,7 @@ const title = room?.name ?? "Gryffindor";
       </p>
     </div>
 
-    <a class="btn" href={`/request?room=${encodeURIComponent(title)}`}>Request Gryffindor</a>
+    <a class="btn primary" href={`/request?room=${encodeURIComponent(title)}`}>Request Gryffindor</a>
   </header>
 
   <section class="photos" aria-label="Room photos">
@@ -100,20 +100,6 @@ const title = room?.name ?? "Gryffindor";
     h1 { margin: 0; }
     .head .muted { margin: 8px 0 0; max-width: 68ch; }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 1px solid rgba(0,0,0,.12);
-      background: #111;
-      color: #fff;
-      font-weight: 600;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-    .btn:hover { filter: brightness(1.05); text-decoration: none; }
 
     .photos {
       margin-top: 18px;
@@ -126,10 +112,10 @@ const title = room?.name ?? "Gryffindor";
     }
 
     .photoCard {
-      border: 1px solid rgba(0,0,0,.12);
-      border-radius: 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
       overflow: hidden;
-      background: #fff;
+      background: var(--card);
     }
 
     .photoFrame {
@@ -171,7 +157,7 @@ const title = room?.name ?? "Gryffindor";
     .note {
       margin-top: 14px;
       padding-top: 12px;
-      border-top: 1px solid rgba(0,0,0,.12);
+      border-top: 1px solid var(--border);
     }
 
     .cal {
@@ -180,8 +166,8 @@ const title = room?.name ?? "Gryffindor";
 
     .frame {
       margin-top: 10px;
-      border: 1px solid rgba(0,0,0,.12);
-      border-radius: 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
       overflow: hidden;
     }
   </style>

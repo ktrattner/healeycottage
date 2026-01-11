@@ -58,11 +58,6 @@ import rooms from "../content/rooms.json";
       grid-template-columns: repeat(3, 1fr);
     }
 
-    a:link,
-    a:visited {
-      color: #111;
-    }
-
     @media (max-width: 860px) {
       .grid {
         grid-template-columns: 1fr;
@@ -70,10 +65,10 @@ import rooms from "../content/rooms.json";
     }
 
     .roomCard {
-      border: 1px solid rgba(0,0,0,.12);
-      border-radius: 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
       padding: 16px;
-      background: #fff;
+      background: var(--card);
       display: grid;
       gap: 8px;
       cursor: pointer;
@@ -83,13 +78,13 @@ import rooms from "../content/rooms.json";
 
     .roomCard:hover {
       border-color: rgba(0,0,0,.28);
-      box-shadow: 0 6px 18px rgba(0,0,0,.08);
+      box-shadow: var(--shadow-md);
       transform: translateY(-2px);
     }
     .roomCard:focus,
     .roomCard:focus-within {
       border-color: rgba(0,0,0,.28);
-      box-shadow: 0 6px 18px rgba(0,0,0,.08);
+      box-shadow: var(--shadow-md);
       transform: translateY(-2px);
     }
 
@@ -112,17 +107,6 @@ import rooms from "../content/rooms.json";
     }
     .titleLink:hover {
       text-decoration: underline;
-    }
-
-    .pill {
-      font-size: 12px;
-      padding: 4px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(22, 163, 74, 0.35);
-      background: rgba(22, 163, 74, 0.08);
-      color: #166534;
-      font-weight: 500;
-      white-space: nowrap;
     }
 
     .cardActions {

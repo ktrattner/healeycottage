@@ -1,0 +1,139 @@
+/* Healey Cottage – global styles
+   Keep this file for shared tokens, typography defaults, and reusable UI primitives.
+*/
+
+/* ---------- Design tokens ---------- */
+:root {
+  --text: #111;
+  --muted: rgba(0, 0, 0, 0.72);
+  --border: rgba(0, 0, 0, 0.12);
+  --card: #fff;
+
+  --radius: 16px;
+  --radius-sm: 12px;
+
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.08);
+
+  --space-1: 6px;
+  --space-2: 10px;
+  --space-3: 14px;
+  --space-4: 18px;
+  --space-5: 30px;
+
+  /* Accent (used for small informational pills) */
+  --accent-border: rgba(22, 163, 74, 0.35);
+  --accent-bg: rgba(22, 163, 74, 0.08);
+  --accent-text: #166534;
+}
+
+/* ---------- Base elements ---------- */
+html,
+body {
+  color: var(--text);
+}
+
+a:link,
+a:visited {
+  color: var(--text);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Stop mobile browsers from altering text sizes unexpectedly */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ---------- Shared text styles ---------- */
+h1,
+h2 {
+  font-family: "Playfair Display", serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.muted {
+  color: var(--muted);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  background: transparent;
+  color: inherit;
+  font-weight: 600;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+}
+
+.btn:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn.primary {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+.btn.primary:hover {
+  filter: brightness(1.05);
+}
+
+/* ---------- Cards ---------- */
+.card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  padding: 16px;
+}
+
+.card.hoverLift {
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.card.hoverLift:hover {
+  border-color: rgba(0, 0, 0, 0.28);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* ---------- Pills ---------- */
+.pill {
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent-text);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ---------- Utilities ---------- */
+.stack {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.row {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.center {
+  display: grid;
+  place-items: center;
+}
