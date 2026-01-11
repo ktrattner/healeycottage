@@ -5,85 +5,85 @@ import Base from "../../layouts/Base.astro";
 <Base title="Request received | Healey Cottage">
   <header class="head">
     <div>
-      <h1>Request received</h1>
+      <div class="statusRow">
+        <span class="badge" aria-hidden="true">✓</span>
+        <h1>Request received</h1>
+      </div>
       <p class="muted">
-        Thanks. Your request has been recorded and is pending approval.
+        Thanks. Your request has been recorded and is pending approval. No further action is needed right now.
+      </p>
+      <p class="fine">
+        We’ll follow up shortly once we’ve reviewed availability.
       </p>
     </div>
-    <a class="btn" href="/availability">View availability</a>
   </header>
 
   <section class="card">
     <h2>What happens next</h2>
+    <p class="muted small">Here’s what to expect over the next little while.</p>
     <ol class="steps">
       <li><b>We review your request.</b> If anything’s unclear, we’ll reach out.</li>
       <li><b>You’ll get an email.</b> We’ll approve or decline by email.</li>
       <li><b>If approved, we block the calendar.</b> Busy blocks only are shown publicly.</li>
     </ol>
-
-    <div class="actions">
-      <a class="linkBtn" href="/request">Submit another request</a>
-      <a class="linkBtn" href="/rooms">Browse rooms</a>
-    </div>
   </section>
 
   <style>
     .head {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 14px;
-      margin-top: 10px;
-      flex-wrap: wrap;
+      margin-top: 14px;
+      padding: 18px 18px 16px;
+      border: 1px solid rgba(0,0,0,.12);
+      border-radius: 18px;
+      background: rgba(22, 163, 74, 0.06);
     }
 
-    h1 { margin: 0; }
-    .head .muted { margin: 8px 0 0; max-width: 70ch; }
+    .statusRow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-    .btn {
+    .badge {
+      width: 30px;
+      height: 30px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 1px solid rgba(0,0,0,.12);
-      background: #111;
-      color: #fff;
-      font-weight: 600;
-      text-decoration: none;
-      white-space: nowrap;
+      border-radius: 999px;
+      border: 1px solid rgba(22, 163, 74, 0.35);
+      background: rgba(22, 163, 74, 0.10);
+      color: #166534;
+      font-weight: 700;
+      line-height: 1;
+      flex: 0 0 auto;
     }
-    .btn:hover { filter: brightness(1.05); text-decoration: none; }
 
-    h2 { margin: 0 0 10px; font-size: 16px; }
+    h1 { margin: 0; }
+
+    .muted { opacity: .78; }
+    .head .muted { margin: 8px 0 0; max-width: 70ch; }
+    .fine { margin: 8px 0 0; font-size: 13px; opacity: .72; }
+
+    .card {
+      margin-top: 14px;
+      border: 1px solid rgba(0,0,0,.12);
+      border-radius: 18px;
+      padding: 16px 18px;
+      background: #fff;
+      box-shadow: 0 10px 25px rgba(0,0,0,.04);
+    }
+
+    h2 { margin: 0; font-size: 16px; }
+
+    .small { margin: 8px 0 0; font-size: 13px; }
 
     .steps {
-      margin: 0;
+      margin: 12px 0 0;
       padding-left: 18px;
       display: grid;
       gap: 8px;
     }
 
-    .actions {
-      margin-top: 14px;
-      padding-top: 12px;
-      border-top: 1px solid rgba(0,0,0,.12);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .linkBtn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 9px 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(0,0,0,.12);
-      text-decoration: none;
-      background: rgba(0,0,0,.04);
-      font-size: 13px;
-    }
-    .linkBtn:hover { background: rgba(0,0,0,.06); text-decoration: none; }
+    .steps li b { font-weight: 700; }
   </style>
 </Base>
