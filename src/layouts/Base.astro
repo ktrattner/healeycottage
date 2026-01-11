@@ -42,7 +42,7 @@ const { title = "Healey Cottage" } = Astro.props;
     }
 
     a:link,
-    a:visited { color: inherit; }
+    a:visited { color: var(--text); }
 
     a:hover { text-decoration: underline; }
 
@@ -130,7 +130,8 @@ const { title = "Healey Cottage" } = Astro.props;
       display: flex;
       align-items: center;
       gap: 10px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
+      white-space: nowrap;
     }
 
     .navLinks a {
@@ -149,6 +150,13 @@ const { title = "Healey Cottage" } = Astro.props;
       color: var(--text);
       border-color: var(--border);
       text-decoration: none;
+    }
+
+    @media (max-width: 420px) {
+      .navLinks a {
+        padding: 6px 8px;
+        font-size: 14px;
+      }
     }
 
     main {
