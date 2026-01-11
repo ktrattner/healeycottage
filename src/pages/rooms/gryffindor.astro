@@ -20,18 +20,36 @@ const title = room?.name ?? "Gryffindor";
 
   <section class="photos" aria-label="Room photos">
     <div class="photoCard">
-      <div class="ph" aria-hidden="true"></div>
-      <p class="cap muted">Photo 1: Bedroom</p>
+      <div class="photoFrame">
+        <img
+          src="/images/gryffindor-bed.jpg"
+          alt="Gryffindor bedroom with king bed"
+          loading="lazy"
+        />
+      </div>
+      <p class="cap muted">Bedroom</p>
     </div>
 
     <div class="photoCard">
-      <div class="ph" aria-hidden="true"></div>
-      <p class="cap muted">Photo 2: Ensuite</p>
+      <div class="photoFrame">
+        <img
+          src="/images/gryffindor-ensuite.jpg"
+          alt="Gryffindor ensuite bathroom with tub and shower"
+          loading="lazy"
+        />
+      </div>
+      <p class="cap muted">Ensuite bathroom</p>
     </div>
 
     <div class="photoCard">
-      <div class="ph" aria-hidden="true"></div>
-      <p class="cap muted">Photo 3: Balcony view</p>
+      <div class="photoFrame">
+        <img
+          src="/images/gryffindor-balcony.jpg"
+          alt="Private west-facing balcony overlooking the lake"
+          loading="lazy"
+        />
+      </div>
+      <p class="cap muted">Private balcony</p>
     </div>
   </section>
 
@@ -114,9 +132,18 @@ const title = room?.name ?? "Gryffindor";
       background: #fff;
     }
 
-    .ph {
+    .photoFrame {
+      width: 100%;
       aspect-ratio: 4 / 3;
-      background: linear-gradient(135deg, rgba(0,0,0,.06), rgba(0,0,0,.02));
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .photoFrame img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
     }
 
     .cap {

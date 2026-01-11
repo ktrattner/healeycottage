@@ -41,13 +41,13 @@ const { title = "Healey Cottage" } = Astro.props;
       line-height: 1.45;
     }
 
-    a:link,
-    a:visited { color: var(--text); }
+    :global(a:link),
+    :global(a:visited) { color: var(--text); }
 
-    a:hover { text-decoration: underline; }
+    :global(a:hover) { text-decoration: underline; }
 
     /* Global button styles */
-    .btn {
+    :global(.btn) {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -61,19 +61,19 @@ const { title = "Healey Cottage" } = Astro.props;
       transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
     }
 
-    .btn:hover {
+    :global(.btn:hover) {
       text-decoration: none;
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(0,0,0,.08);
     }
 
-    .btn.primary {
+    :global(.btn.primary) {
       background: #111;
       color: #fff;
       border-color: #111;
     }
 
-    .btn.primary:hover {
+    :global(.btn.primary:hover) {
       filter: brightness(1.05);
     }
 
@@ -159,7 +159,7 @@ const { title = "Healey Cottage" } = Astro.props;
       }
     }
 
-    main {
+    .layoutMain {
       padding: 28px 0 60px;
     }
 
@@ -192,7 +192,7 @@ const { title = "Healey Cottage" } = Astro.props;
     </div>
   </header>
 
-  <main>
+  <main class="layoutMain">
     <div class="container">
       <slot />
     </div>
