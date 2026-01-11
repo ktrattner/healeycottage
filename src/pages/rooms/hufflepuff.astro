@@ -20,8 +20,14 @@ const title = room?.name ?? "Hufflepuff";
 
   <section class="photos" aria-label="Room photos">
     <div class="photoCard">
-      <div class="ph" aria-hidden="true"></div>
-      <p class="cap muted">Photo 1: Sleeping nook</p>
+      <div class="photoFrame">
+        <img
+          src="/images/hufflepuff-nook.jpg"
+          alt="Hufflepuff bedroom nook with queen bed by the window"
+          loading="lazy"
+        />
+      </div>
+      <p class="cap muted">Sleeping nook</p>
     </div>
 
     <div class="photoCard">
@@ -117,6 +123,20 @@ const title = room?.name ?? "Hufflepuff";
     .ph {
       aspect-ratio: 4 / 3;
       background: linear-gradient(135deg, rgba(0,0,0,.06), rgba(0,0,0,.02));
+    }
+
+    .photoFrame {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .photoFrame img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
     }
 
     .cap {
