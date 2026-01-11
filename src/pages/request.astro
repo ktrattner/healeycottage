@@ -65,6 +65,10 @@ const sent = Astro.url.searchParams.get("sent");
     </label>
 
     <button type="submit" class="btn primary">Submit request</button>
+    <p class="muted disclaimer">
+      This is a private booking site for friends and family of Kyle and Brandon.
+      If we sent you the link, you’re invited. If you found this by accident, we admire the initiative, but it’s probably a no.
+    </p>
   </form>
 
   <script is:inline define:vars={{ rooms }}>
@@ -156,6 +160,12 @@ const sent = Astro.url.searchParams.get("sent");
       width: fit-content;
       padding: 12px 18px;
       font-size: 15px;
+    }
+
+    .disclaimer {
+      margin-top: 10px;
+      font-size: 12.5px;
+      line-height: 1.45;
     }
 
     .hp {
