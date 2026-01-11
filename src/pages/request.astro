@@ -121,6 +121,10 @@ const sent = Astro.url.searchParams.get("sent");
       gap: 12px;
       max-width: 640px;
     }
+    .form,
+    .form * {
+      box-sizing: border-box;
+    }
 
     label {
       display: grid;
@@ -129,15 +133,11 @@ const sent = Astro.url.searchParams.get("sent");
       font-size: 14px;
     }
 
-    input, select, textarea {
-      font: inherit;
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(0,0,0,.14);
-      background: #fff;
+    input,
+    select,
+    textarea {
+      width: 100%;
     }
-
-    textarea { resize: vertical; }
 
     .help {
       margin: 6px 0 0;
