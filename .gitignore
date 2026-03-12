@@ -6,3 +6,4 @@ node_modules/
 # Keep shared env files explicit; ignore machine-local variants only.
 .env.local
 .env.*.local
+src/Code.local.gs

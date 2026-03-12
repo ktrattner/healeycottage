@@ -3,7 +3,7 @@
     "slug": "gryffindor",
     "name": "Gryffindor",
     "sleeps": 2,
-    "summary": "King bed suite with an ensuite washroom, private west-facing balcony, and lake views.",
+    "summary": "King bed room with an ensuite washroom, private west-facing balcony, and lake views.",
     "details": [
       { "label": "Bed", "value": "King" },
       { "label": "Bathroom", "value": "Ensuite with tub and shower" },
@@ -47,7 +47,7 @@
         "caption": "Sleeping nook"
       },
       {
-        "caption": "Photo 2: Window view"
+        "caption": "Coming Soon"
       },
       {
         "src": "/images/hall-bathroom.jpg",
@@ -76,7 +76,7 @@
         "caption": "Bedroom"
       },
       {
-        "caption": "Photo 2: Natural light"
+        "caption": "Coming Soon"
       },
       {
         "src": "/images/hall-bathroom.jpg",

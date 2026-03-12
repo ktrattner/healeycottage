@@ -83,8 +83,18 @@ const { room } = Astro.props;
       flex-wrap: wrap;
     }
 
+    .head > div {
+      flex: 1 1 560px;
+    }
+
     h1 { margin: 0; }
     .head .muted { margin: 8px 0 0; max-width: 68ch; }
+
+    @media (min-width: 901px) {
+      .head .muted {
+        max-width: none;
+      }
+    }
 
     .photos {
       margin-top: 18px;
