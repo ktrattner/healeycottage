@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import rooms from "../content/rooms.json";
 const sent = Astro.url.searchParams.get("sent");
+const roomOptions = rooms.map(({ slug, name }) => ({ slug, name }));
 ---
 
 <Base title="Request a stay | Healey Cottage">
@@ -40,8 +41,8 @@ const sent = Astro.url.searchParams.get("sent");
       Room
       <select id="roomSelect" name="room" required>
         <option value="" disabled selected>Select a room</option>
-        {rooms.map((r) => (
-          <option value={r.name}>{r.name}</option>
+        {roomOptions.map((room) => (
+          <option value={room.name}>{room.name}</option>
         ))}
       </select>
       <p class="help">Only busy blocks are shown publicly. Details stay private.</p>
@@ -71,7 +72,7 @@ const sent = Astro.url.searchParams.get("sent");
     </p>
   </form>
 
-  <script is:inline define:vars={{ rooms }}>
+  <script is:inline define:vars={{ roomOptions }}>
     (() => {
       const select = document.getElementById("roomSelect");
       if (!select) return;
@@ -87,7 +88,7 @@ const sent = Astro.url.searchParams.get("sent");
 
       // Build a mapping of slugs and names (case-insensitive) to the option value (room name)
       const roomMap = new Map(
-        (rooms || [])
+        (roomOptions || [])
           .map((r) => [
             [String(r.name).trim().toLowerCase(), r.name],
             [String(r.slug).trim().toLowerCase(), r.name],

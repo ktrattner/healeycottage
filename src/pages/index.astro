@@ -3,10 +3,6 @@ import Base from "../layouts/Base.astro";
 import rooms from "../content/rooms.json";
 ---
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:opsz,wght@5..120,500&display=swap" rel="stylesheet">
-
 <Base title="Healey Cottage">
   <main>
     <section class="hero">
@@ -45,7 +41,7 @@ import rooms from "../content/rooms.json";
               <h3>{r.name}</h3>
               <span class="pill">Sleeps {r.sleeps}</span>
             </div>
-            <p class="muted">{r.bed} bed</p>
+            <p class="muted">{r.summary}</p>
             <div class="roomBottom">
               <span class="link">View room</span>
               <span class="link">Request</span>

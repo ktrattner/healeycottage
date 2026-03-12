@@ -11,44 +11,21 @@ import rooms from "../content/rooms.json";
 
   <div class="grid">
     {rooms.map((r) => (
-      <section class="roomCard" tabindex="0" data-href={`/rooms/${r.slug}`}>
+      <article class="roomCard card hoverLift">
         <div class="cardTop">
           <h2><a class="titleLink" href={`/rooms/${r.slug}`}>{r.name}</a></h2>
           <span class="pill">Sleeps {r.sleeps}</span>
         </div>
 
-        <p class="muted">{r.bed} bed</p>
+        <p class="muted summary">{r.summary}</p>
 
         <div class="cardActions">
           <a class="link" href={`/rooms/${r.slug}`}>View details</a>
-          <a class="link" href={`/request?room=${r.slug}`}>Request</a>
+          <a class="link" href={`/request?room=${encodeURIComponent(r.name)}`}>Request</a>
         </div>
-      </section>
+      </article>
     ))}
   </div>
-
-  <script is:inline>
-    // Make the whole card clickable (like the index cards), without breaking the inner links
-    document.querySelectorAll(".roomCard[data-href]").forEach((card) => {
-      const href = card.getAttribute("data-href");
-      if (!href) return;
-
-      card.addEventListener("click", (e) => {
-        const t = e.target;
-        if (t && t.closest && t.closest("a")) return; // let links behave normally
-        window.location.href = href;
-      });
-
-      card.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          const active = document.activeElement;
-          if (active && active.closest && active.closest("a")) return;
-          e.preventDefault();
-          window.location.href = href;
-        }
-      });
-    });
-  </script>
 
   <style>
     .grid {
@@ -65,27 +42,8 @@ import rooms from "../content/rooms.json";
     }
 
     .roomCard {
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px;
-      background: var(--card);
       display: grid;
       gap: 8px;
-      cursor: pointer;
-      transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
-      outline: none;
-    }
-
-    .roomCard:hover {
-      border-color: rgba(0,0,0,.28);
-      box-shadow: var(--shadow-md);
-      transform: translateY(-2px);
-    }
-    .roomCard:focus,
-    .roomCard:focus-within {
-      border-color: rgba(0,0,0,.28);
-      box-shadow: var(--shadow-md);
-      transform: translateY(-2px);
     }
 
     .cardTop {
@@ -114,6 +72,10 @@ import rooms from "../content/rooms.json";
       display: flex;
       justify-content: space-between;
       font-size: 13px;
+    }
+
+    .summary {
+      margin: 8px 0 0;
     }
 
     .link {

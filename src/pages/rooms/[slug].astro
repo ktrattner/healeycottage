@@ -2,52 +2,49 @@
 import Base from "../../layouts/Base.astro";
 import rooms from "../../content/rooms.json";
 
-const room = rooms.find((r) => r.slug === "hufflepuff");
-const title = room?.name ?? "Hufflepuff";
+export function getStaticPaths() {
+  return rooms.map((room) => ({
+    params: { slug: room.slug },
+    props: { room }
+  }));
+}
+
+const { room } = Astro.props;
 ---
 
-<Base title={`${title} | Healey Cottage`}>
+<Base title={`${room.name} | Healey Cottage`}>
   <header class="head">
     <div>
-      <h1>{title}</h1>
-      <p class="muted">
-        Cozy queen room tucked beside the window. Ideal for solo travellers and comfortable for two.
-      </p>
+      <h1>{room.name}</h1>
+      <p class="muted">{room.summary}</p>
     </div>
 
-    <a class="btn primary" href={`/request?room=${encodeURIComponent(title)}`}>Request Hufflepuff</a>
+    <a class="btn primary" href={`/request?room=${encodeURIComponent(room.name)}`}>
+      Request {room.name}
+    </a>
   </header>
 
   <section class="photos" aria-label="Room photos">
-    <div class="photoCard">
-      <div class="photoFrame">
-        <img
-          src="/images/hufflepuff-nook.jpg"
-          alt="Hufflepuff bedroom nook with queen bed by the window"
-          loading="lazy"
-        />
+    {room.photos.map((photo) => (
+      <div class="photoCard">
+        {photo.src ? (
+          <div class="photoFrame">
+            <img src={photo.src} alt={photo.alt} loading="lazy" />
+          </div>
+        ) : (
+          <div class="ph" aria-hidden="true"></div>
+        )}
+        <p class="cap muted">{photo.caption}</p>
       </div>
-      <p class="cap muted">Sleeping nook</p>
-    </div>
-
-    <div class="photoCard">
-      <div class="ph" aria-hidden="true"></div>
-      <p class="cap muted">Photo 2: Window view</p>
-    </div>
-
-    <div class="photoCard">
-      <div class="ph" aria-hidden="true"></div>
-      <p class="cap muted">Photo 3: Shared bath</p>
-    </div>
+    ))}
   </section>
 
   <section class="details card">
     <h2>At a glance</h2>
     <ul>
-      <li><b>Bed:</b> Queen</li>
-      <li><b>Best for:</b> Solo travellers (comfortable for two)</li>
-      <li><b>Bathroom:</b> Shared hall bathroom (shower and toilet)</li>
-      <li><b>Shared with:</b> Ravenclaw guests</li>
+      {room.details.map((item) => (
+        <li><b>{item.label}:</b> {item.value}</li>
+      ))}
     </ul>
 
     <div class="note">
@@ -57,7 +54,7 @@ const title = room?.name ?? "Hufflepuff";
       <p>
         <a href="/availability">View availability</a>
         <span> · </span>
-        <a href={`/request?room=${encodeURIComponent(title)}`}>Request this room</a>
+        <a href={`/request?room=${encodeURIComponent(room.name)}`}>Request this room</a>
       </p>
     </div>
   </section>
@@ -67,11 +64,12 @@ const title = room?.name ?? "Hufflepuff";
     <p class="muted">Public view shows busy blocks only (no details).</p>
     <iframe
       class="frame"
-      src={room?.calendarEmbedUrl}
+      src={room.calendarEmbedUrl}
       width="100%"
       height="560"
       loading="lazy"
       referrerpolicy="no-referrer-when-downgrade"
+      title={`${room.name} availability`}
     ></iframe>
   </section>
 
@@ -87,7 +85,6 @@ const title = room?.name ?? "Hufflepuff";
 
     h1 { margin: 0; }
     .head .muted { margin: 8px 0 0; max-width: 68ch; }
-
 
     .photos {
       margin-top: 18px;

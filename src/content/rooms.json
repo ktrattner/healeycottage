@@ -2,28 +2,88 @@
   {
     "slug": "gryffindor",
     "name": "Gryffindor",
-    "bed": "King",
     "sleeps": 2,
-    "summary": "King bed. Calm, bright, and easy to settle into.",
-    "image": "/images/gryffindor.jpg",
+    "summary": "King bed suite with an ensuite washroom, private west-facing balcony, and lake views.",
+    "details": [
+      { "label": "Bed", "value": "King" },
+      { "label": "Bathroom", "value": "Ensuite with tub and shower" },
+      { "label": "Outdoor", "value": "Private balcony overlooking the lake" },
+      { "label": "Exposure", "value": "West-facing (great evening light)" }
+    ],
+    "photos": [
+      {
+        "src": "/images/gryffindor-bedroom.jpg",
+        "alt": "Gryffindor bedroom with king bed",
+        "caption": "Bedroom"
+      },
+      {
+        "src": "/images/gryffindor-ensuite.jpg",
+        "alt": "Gryffindor ensuite bathroom with tub and shower",
+        "caption": "Ensuite bathroom"
+      },
+      {
+        "src": "/images/gryffindor-balcony.jpg",
+        "alt": "Private west-facing balcony overlooking the lake",
+        "caption": "Private balcony"
+      }
+    ],
     "calendarEmbedUrl": "https://calendar.google.com/calendar/embed?src=c_08692d5205f8c5b8b7f7a2ccf9e10ee5101960ea9df40447feac59db88c3b3a5@group.calendar.google.com&ctz=America/Toronto"
   },
   {
     "slug": "hufflepuff",
     "name": "Hufflepuff",
-    "bed": "Queen",
     "sleeps": 2,
-    "summary": "Queen bed. Cozy and quiet.",
-    "image": "/images/hufflepuff.jpg",
+    "summary": "Cozy queen room tucked beside the window. Ideal for solo travellers and comfortable for two.",
+    "details": [
+      { "label": "Bed", "value": "Queen" },
+      { "label": "Best for", "value": "Solo travellers (comfortable for two)" },
+      { "label": "Bathroom", "value": "Shared hall bathroom (shower and toilet)" },
+      { "label": "Shared with", "value": "Ravenclaw guests" }
+    ],
+    "photos": [
+      {
+        "src": "/images/hufflepuff-nook.jpg",
+        "alt": "Hufflepuff bedroom nook with queen bed by the window",
+        "caption": "Sleeping nook"
+      },
+      {
+        "caption": "Photo 2: Window view"
+      },
+      {
+        "src": "/images/hall-bathroom.jpg",
+        "alt": "Shared hall bathroom",
+        "caption": "Shared bath"
+      }
+    ],
     "calendarEmbedUrl": "https://calendar.google.com/calendar/embed?src=c_fc75a6aa5d3d70223c225dac5d102fb1c8320c9fc389b1ae88d85b797bd685ab@group.calendar.google.com&ctz=America/Toronto"
   },
   {
     "slug": "ravenclaw",
     "name": "Ravenclaw",
-    "bed": "Queen",
     "sleeps": 2,
-    "summary": "Queen bed. Great for reading and relaxing.",
-    "image": "/images/ravenclaw.jpg",
+    "summary": "Bright corner room with a queen bed and plenty of natural light. A great option for couples.",
+    "details": [
+      { "label": "Bed", "value": "Queen" },
+      { "label": "Best for", "value": "Couples" },
+      { "label": "Bathroom", "value": "Shared hall bathroom (shower and toilet)" },
+      { "label": "Shared with", "value": "Hufflepuff guests" },
+      { "label": "Room type", "value": "Corner room with lots of natural light" }
+    ],
+    "photos": [
+      {
+        "src": "/images/ravenclaw-bed.jpg",
+        "alt": "Ravenclaw bedroom with queen bed",
+        "caption": "Bedroom"
+      },
+      {
+        "caption": "Photo 2: Natural light"
+      },
+      {
+        "src": "/images/hall-bathroom.jpg",
+        "alt": "Shared hall bathroom",
+        "caption": "Shared bath"
+      }
+    ],
     "calendarEmbedUrl": "https://calendar.google.com/calendar/embed?src=c_37a015d269eb93ed78c238ecccdf74db15453079c3f2e40463ab7758fdbe5eb0@group.calendar.google.com&ctz=America/Toronto"
   }
 ]
