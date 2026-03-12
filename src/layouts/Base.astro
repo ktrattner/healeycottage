@@ -2,6 +2,16 @@
 import "../styles/global.css";
 
 const { title = "Healey Cottage" } = Astro.props;
+const pathname = Astro.url.pathname.replace(/\/+$/, "") || "/";
+const navItems = [
+  { href: "/rooms", label: "Rooms" },
+  { href: "/availability", label: "Availability" },
+  { href: "/request", label: "Request" }
+];
+
+function isActive(href) {
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
 ---
 <!doctype html>
 <html lang="en-CA">
@@ -18,7 +28,7 @@ const { title = "Healey Cottage" } = Astro.props;
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hurricane&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Hurricane&family=Playfair+Display:wght@400;500;600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -33,8 +43,9 @@ const { title = "Healey Cottage" } = Astro.props;
       margin: 0;
       background: var(--bg);
       color: var(--text);
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      line-height: 1.45;
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.58;
     }
 
     .container {
@@ -72,6 +83,10 @@ const { title = "Healey Cottage" } = Astro.props;
       text-decoration: none;
     }
 
+    .brand[aria-current="page"] .brandText {
+      color: var(--text);
+    }
+
     .brandText {
       font-family: "Hurricane", cursive;
       font-weight: 400;
@@ -94,6 +109,9 @@ const { title = "Healey Cottage" } = Astro.props;
       border-radius: 10px;
       border: 1px solid transparent;
       color: var(--muted);
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
     }
 
     .navLinks a:visited {
@@ -106,6 +124,13 @@ const { title = "Healey Cottage" } = Astro.props;
       text-decoration: none;
     }
 
+    .navLinks a[aria-current="page"] {
+      color: var(--text);
+      border-color: var(--border);
+      background: rgba(0,0,0,.04);
+      font-weight: 600;
+    }
+
     @media (max-width: 420px) {
       .navLinks a {
         padding: 6px 8px;
@@ -114,7 +139,7 @@ const { title = "Healey Cottage" } = Astro.props;
     }
 
     .layoutMain {
-      padding: 28px 0 60px;
+      padding: clamp(26px, 4vw, 36px) 0 64px;
     }
   </style>
 </head>
@@ -122,13 +147,18 @@ const { title = "Healey Cottage" } = Astro.props;
   <header>
     <div class="container">
       <nav class="nav" aria-label="Primary">
-        <a class="brand" href="/">
+        <a class="brand" href="/" aria-current={pathname === "/" ? "page" : undefined}>
           <span class="brandText">Healey Cottage</span>
         </a>
         <div class="navLinks">
-          <a href="/rooms">Rooms</a>
-          <a href="/availability">Availability</a>
-          <a href="/request">Request</a>
+          {navItems.map((item) => (
+            <a
+              href={item.href}
+              aria-current={isActive(item.href) ? "page" : undefined}
+            >
+              {item.label}
+            </a>
+          ))}
         </div>
       </nav>
     </div>

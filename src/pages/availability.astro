@@ -7,7 +7,7 @@ import rooms from "../content/rooms.json";
   <header class="head">
     <div>
       <h1>Availability</h1>
-      <p class="muted">
+      <p class="lead">
         Public calendars show <b>busy blocks only</b> (no guest names or details).
         If a date looks open, submit a request and we’ll confirm by email.
       </p>
@@ -53,8 +53,7 @@ import rooms from "../content/rooms.json";
       flex-wrap: wrap;
     }
 
-    h1 { margin: 0; }
-    .head .muted { margin: 8px 0 0; max-width: 80ch; }
+    .head .lead { margin: 10px 0 0; max-width: 72ch; }
 
     .grid {
       margin-top: 18px;
@@ -78,7 +77,7 @@ import rooms from "../content/rooms.json";
 
     .top h2 {
       margin: 0;
-      font-size: 18px;
+      font-size: clamp(1.22rem, 2vw, 1.45rem);
     }
 
     .meta {

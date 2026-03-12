@@ -9,7 +9,7 @@ import Base from "../../layouts/Base.astro";
         <span class="badge" aria-hidden="true">✓</span>
         <h1>Request received</h1>
       </div>
-      <p class="muted">
+      <p class="lead message">
         Thanks. Your request has been recorded and is pending approval. No further action is needed right now.
       </p>
       <p class="fine">
@@ -58,11 +58,8 @@ import Base from "../../layouts/Base.astro";
       flex: 0 0 auto;
     }
 
-    h1 { margin: 0; }
-
-    .muted { opacity: .78; }
-    .head .muted { margin: 8px 0 0; max-width: 70ch; }
-    .fine { margin: 8px 0 0; font-size: 13px; opacity: .72; }
+    .message { margin: 10px 0 0; max-width: 62ch; }
+    .fine { margin: 8px 0 0; }
 
     .card {
       margin-top: 14px;
@@ -73,7 +70,7 @@ import Base from "../../layouts/Base.astro";
       box-shadow: 0 10px 25px rgba(0,0,0,.04);
     }
 
-    h2 { margin: 0; font-size: 16px; }
+    h2 { font-size: clamp(1.22rem, 2vw, 1.4rem); }
 
     .small { margin: 8px 0 0; font-size: 13px; }
 

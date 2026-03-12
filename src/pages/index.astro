@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import RoomCard from "../components/RoomCard.astro";
 import rooms from "../content/rooms.json";
 ---
 
@@ -8,7 +9,7 @@ import rooms from "../content/rooms.json";
     <section class="hero">
       <div class="heroText">
         <h1>Stay at Healey Cottage</h1>
-        <p class="sub">
+        <p class="lead sub">
           You’re invited to stay with Kyle and Brandon at Healey Cottage in Muskoka. Check availability, pick a room, and send a request. We’ll confirm by email.
         </p>
 
@@ -36,17 +37,7 @@ import rooms from "../content/rooms.json";
 
       <div class="grid">
         {rooms.map((r) => (
-          <a class="roomCard" href={`/rooms/${r.slug}`}>
-            <div class="roomTop">
-              <h3>{r.name}</h3>
-              <span class="pill">Sleeps {r.sleeps}</span>
-            </div>
-            <p class="muted">{r.summary}</p>
-            <div class="roomBottom">
-              <span class="link">View room</span>
-              <span class="link">Request</span>
-            </div>
-          </a>
+          <RoomCard room={r} />
         ))}
       </div>
     </section>
@@ -72,23 +63,9 @@ import rooms from "../content/rooms.json";
     .hero { display: grid; gap: 18px; grid-template-columns: 1.35fr 0.65fr; align-items: start; }
     @media (max-width: 860px) { .hero { grid-template-columns: 1fr; } }
 
-    h1 {
-      font-family: "Playfair Display", serif;
-      font-size: 44px;
-      line-height: 1.08;
-      margin: 0 0 12px;
-      letter-spacing: -0.01em;
-    }
-    h2 {
-      font-family: "Playfair Display", serif;
-      letter-spacing: -0.01em;
-    }
-    @media (max-width: 560px) { h1 { font-size: 36px; } }
-
-    .sub { font-size: 14px; opacity: .8; margin: 0 0 18px; max-width: 56ch; }
+    .sub { margin: 10px 0 18px; max-width: 56ch; }
     @media (min-width: 861px) { .sub { max-width: none; } }
     .ctaRow { display: flex; gap: 10px; flex-wrap: wrap; margin: 0 0 14px; }
-    .fine { font-size: 13px; opacity: .7; margin: 0; }
 
     .heroImage {
       border-radius: 16px;
@@ -110,25 +87,6 @@ import rooms from "../content/rooms.json";
 
     .grid { display: grid; gap: 12px; grid-template-columns: repeat(3, 1fr); margin-top: 12px; }
     @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
-
-    .roomCard {
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 14px;
-      text-decoration: none;
-      display: block;
-      transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
-    }
-
-    .roomCard:hover {
-      border-color: rgba(0,0,0,.28);
-      box-shadow: var(--shadow-md);
-      transform: translateY(-2px);
-    }
-    .roomTop { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-    .roomTop h3 { margin: 0; font-size: 16px; }
-    .muted { margin: 8px 0 0; }
-    .roomBottom { display: flex; justify-content: space-between; margin-top: 12px; font-size: 13px; opacity: .85; }
 
     .steps { margin: 12px 0 0; padding-left: 18px; display: grid; gap: 8px; }
   </style>

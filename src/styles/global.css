@@ -4,6 +4,8 @@
 
 /* ---------- Design tokens ---------- */
 :root {
+  --font-body: "Source Sans 3", "Segoe UI", sans-serif;
+  --font-display: "Playfair Display", serif;
   --text: #111;
   --muted: rgba(0, 0, 0, 0.72);
   --border: rgba(0, 0, 0, 0.12);
@@ -50,12 +52,49 @@ html {
 /* ---------- Shared text styles ---------- */
 h1,
 h2 {
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-display);
   font-weight: 500;
   letter-spacing: -0.01em;
 }
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 5vw, 3.35rem);
+  line-height: 1.04;
+}
+
+h2 {
+  margin: 0;
+  font-size: clamp(1.45rem, 2.8vw, 2rem);
+  line-height: 1.14;
+}
+
+h3 {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1.28;
+}
+
+p {
+  line-height: 1.62;
+}
+
 .muted {
   color: var(--muted);
+}
+
+.lead {
+  font-size: clamp(1rem, 1.5vw, 1.08rem);
+  line-height: 1.68;
+  color: var(--muted);
+}
+
+.fine {
+  font-size: 0.94rem;
+  line-height: 1.58;
+  color: rgba(0, 0, 0, 0.64);
 }
 
 /* ---------- Form controls ---------- */

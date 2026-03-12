@@ -12,7 +12,10 @@ const roomOptions = rooms.map(({ slug, name }) => ({ slug, name }));
       Request received. You’ll get an email once it’s approved or declined.
     </div>
   )}
-  <p class="muted">Submit a request. Approval required.</p>
+  <p class="lead intro">
+    Submit a request. We review requests manually and usually reply by email within a couple of days.
+    If timing is tight, mention it in your notes.
+  </p>
 
   <form
     class="form card"
@@ -26,6 +29,7 @@ const roomOptions = rooms.map(({ slug, name }) => ({ slug, name }));
       </label>
     </div>
     <input type="hidden" name="ts" id="tsField" value="" />
+    <div id="selectedRoomNotice" class="banner roomNotice" hidden></div>
 
     <label>
       Name
@@ -51,14 +55,15 @@ const roomOptions = rooms.map(({ slug, name }) => ({ slug, name }));
     <div class="dateRow">
       <label>
         Check-in
-        <input name="checkIn" type="date" required />
+        <input id="checkInField" name="checkIn" type="date" required />
       </label>
 
       <label>
         Check-out
-        <input name="checkOut" type="date" required />
+        <input id="checkOutField" name="checkOut" type="date" required />
       </label>
     </div>
+    <p class="help dateHelp">Check-out must be at least one day after check-in.</p>
 
     <label>
       Notes (optional)
@@ -80,6 +85,45 @@ const roomOptions = rooms.map(({ slug, name }) => ({ slug, name }));
       const ts = document.getElementById("tsField");
       if (ts) ts.value = String(Date.now());
 
+      const checkIn = document.getElementById("checkInField");
+      const checkOut = document.getElementById("checkOutField");
+      const selectedRoomNotice = document.getElementById("selectedRoomNotice");
+
+      const toIsoDate = (date) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+        return `${year}-${month}-${day}`;
+      };
+
+      const addDays = (isoDate, days) => {
+        const [year, month, day] = isoDate.split("-").map(Number);
+        const next = new Date(year, month - 1, day + days);
+        return toIsoDate(next);
+      };
+
+      const today = toIsoDate(new Date());
+      if (checkIn) checkIn.min = today;
+      if (checkOut) checkOut.min = addDays(today, 1);
+
+      const syncDates = () => {
+        if (!checkIn || !checkOut) return;
+
+        const minimumCheckOut = checkIn.value ? addDays(checkIn.value, 1) : addDays(today, 1);
+        checkOut.min = minimumCheckOut;
+
+        if (checkOut.value && checkOut.value < minimumCheckOut) {
+          checkOut.value = minimumCheckOut;
+        }
+
+        const invalid = Boolean(checkIn.value && checkOut.value && checkOut.value <= checkIn.value);
+        checkOut.setCustomValidity(invalid ? "Check-out must be after check-in." : "");
+      };
+
+      checkIn?.addEventListener("input", syncDates);
+      checkOut?.addEventListener("input", syncDates);
+      syncDates();
+
       const params = new URLSearchParams(window.location.search);
       const raw = (params.get("room") || "").trim();
       if (!raw) return;
@@ -100,6 +144,10 @@ const roomOptions = rooms.map(({ slug, name }) => ({ slug, name }));
       if (!desired) return;
 
       select.value = desired;
+      if (selectedRoomNotice) {
+        selectedRoomNotice.hidden = false;
+        selectedRoomNotice.textContent = `Requesting ${desired}. You can still change the room below.`;
+      }
     })();
   </script>
 
@@ -115,12 +163,22 @@ const roomOptions = rooms.map(({ slug, name }) => ({ slug, name }));
       border-color: var(--accent-border);
       background: var(--accent-bg);
     }
+    .roomNotice {
+      margin: 0;
+      border-color: rgba(0,0,0,.12);
+      background: rgba(0,0,0,.03);
+      font-weight: 500;
+    }
 
     .form {
       margin-top: 14px;
       display: grid;
       gap: 12px;
       max-width: 640px;
+    }
+    .intro {
+      margin: 10px 0 0;
+      max-width: 62ch;
     }
     .form,
     .form * {
@@ -145,6 +203,9 @@ const roomOptions = rooms.map(({ slug, name }) => ({ slug, name }));
       font-weight: 400;
       font-size: 13px;
       color: var(--muted);
+    }
+    .dateHelp {
+      margin-top: -2px;
     }
 
     .dateRow {

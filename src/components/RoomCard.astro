@@ -1,0 +1,61 @@
+---
+const { room } = Astro.props;
+---
+
+<article class="roomCard card hoverLift">
+  <div class="roomTop">
+    <h3><a class="titleLink" href={`/rooms/${room.slug}`}>{room.name}</a></h3>
+    <span class="pill">Sleeps {room.sleeps}</span>
+  </div>
+  <p class="muted">{room.summary}</p>
+  <div class="roomActions">
+    <a class="btn small" href={`/rooms/${room.slug}`}>View room</a>
+    <a class="btn small" href={`/request?room=${encodeURIComponent(room.name)}`}>Request</a>
+  </div>
+</article>
+
+<style>
+  .roomCard {
+    display: grid;
+    gap: 8px;
+  }
+
+  .roomTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .roomTop h3 {
+    margin: 0;
+    font-size: 16px;
+  }
+
+  .titleLink,
+  .titleLink:visited {
+    color: #111;
+    text-decoration: none;
+  }
+
+  .titleLink:hover {
+    text-decoration: underline;
+  }
+
+  .muted {
+    margin: 8px 0 0;
+  }
+
+  .roomActions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+
+  .btn.small {
+    padding: 8px 10px;
+    font-size: 13px;
+    border-radius: 12px;
+  }
+</style>
