@@ -167,7 +167,9 @@ const { room } = Astro.props;
       padding: 12px 14px;
       border: 1px solid var(--border);
       border-radius: 14px;
-      background: rgba(0, 0, 0, 0.02);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(244, 239, 230, 0.72));
+      box-shadow: 0 8px 18px rgba(61, 46, 27, 0.04);
     }
 
     .specItem dt {
@@ -180,7 +182,7 @@ const { room } = Astro.props;
     }
 
     .specItem dd {
-      margin: 6px 0 0;
+      margin: 10px 0 0;
       font-size: 15px;
       line-height: 1.45;
     }

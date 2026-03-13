@@ -1,0 +1,165 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="What to bring us | Healey Cottage">
+  <header class="head">
+    <p class="eyebrow">Entirely optional</p>
+    <h1>If you’re asking what to bring us</h1>
+    <p class="lead intro">
+      Since this question comes up a lot: your presence is the main event. But if you feel like arriving with a small peace offering, here are the kinds of things that reliably go over well.
+    </p>
+    <p class="fine">
+      This is not a registry, a demand, or the beginning of a dowry system. It is simply a lightly curated guide to host-friendly gestures.
+    </p>
+  </header>
+
+  <section class="grid" aria-label="Suggested host gifts">
+    <article class="card">
+      <h2>Consumables We Always Like</h2>
+      <p class="muted">Easy wins. No guesswork. Rarely controversial.</p>
+      <ul>
+        <li>Whole coffee beans</li>
+        <li>Snacks and sharing foods</li>
+        <li>Wine you would be happy to drink yourself</li>
+        <li>Sweet treats</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h2>Cottage Usefuls</h2>
+      <p class="muted">Practical things that somehow never stop being useful up north.</p>
+      <ul>
+        <li>Bug spray</li>
+        <li>Sunscreen</li>
+        <li>Firewood bundle</li>
+        <li>A thoughtful grocery add-on for the weekend</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h2>Delightfully Extra</h2>
+      <p class="muted">Not necessary, but always appreciated when chosen with taste and restraint.</p>
+      <ul>
+        <li>A dramatic host gift</li>
+        <li>Champagne</li>
+        <li>A small bouquet of flowers</li>
+        <li>Any contribution that feels charming rather than burdensome</li>
+      </ul>
+    </article>
+
+    <article class="card caution">
+      <h2>Please Don’t Bring</h2>
+      <p class="muted">This section exists to protect everyone’s future selves.</p>
+      <ul>
+        <li>Random decorative objects we now have to own forever</li>
+        <li>Novelty junk that becomes our responsibility after checkout</li>
+        <li>Mystery perishables with an unclear plan</li>
+        <li>Anything large, inconvenient, or spiritually from Winners</li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="closing card">
+    <h2>The Rule of Thumb</h2>
+    <p class="lead">
+      If it is easy to enjoy, easy to share, and easy to finish by the end of the weekend, you are almost certainly in the right zone.
+    </p>
+    <p class="fine">
+      And again: this is entirely optional. Showing up pleasant, relaxed, and ready for lake time remains the gold standard.
+    </p>
+  </section>
+
+  <style>
+    .head {
+      margin-top: 10px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .eyebrow {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(131, 75, 25, 0.82);
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    .intro {
+      margin: 0;
+      max-width: 62ch;
+    }
+
+    .fine {
+      margin: 0;
+      max-width: 70ch;
+    }
+
+    .grid {
+      margin-top: 22px;
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @media (max-width: 760px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 18px;
+      padding: 16px 18px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(247, 244, 238, 0.92));
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
+    }
+
+    .card h2 {
+      margin: 0;
+      font-size: clamp(1.15rem, 2vw, 1.35rem);
+    }
+
+    .card p {
+      margin: 8px 0 0;
+    }
+
+    .card ul {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .caution {
+      background: linear-gradient(180deg, rgba(255, 250, 247, 0.98), rgba(248, 240, 235, 0.94));
+    }
+
+    .closing {
+      margin-top: 18px;
+    }
+
+    .closing .lead {
+      margin: 8px 0 0;
+      max-width: 58ch;
+    }
+
+    .closing .fine {
+      margin-top: 10px;
+    }
+
+    @media (min-width: 861px) {
+      .intro,
+      .fine,
+      .closing .lead {
+        max-width: none;
+      }
+    }
+  </style>
+</Base>
