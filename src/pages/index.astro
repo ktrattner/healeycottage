@@ -56,6 +56,27 @@ import rooms from "../content/rooms.json";
         </li>
       </ol>
     </section>
+
+    <section class="section seadooFeature">
+      <div class="featureCopy">
+        <p class="eyebrow">New for 2026</p>
+        <h2>The cottage now has a Seadoo.</h2>
+        <p class="lead featureLead">
+          This is, of course, not compensating for anything. It just happens to be loud, flashy, and built for impressive performance.
+        </p>
+        <p class="fine featureFine">
+          Lake conditions, life jackets, common sense, and host approval still apply.
+        </p>
+      </div>
+
+      <div class="featureImage">
+        <img
+          src="/images/seadoo-guys.jpg"
+          alt="Illustrated poster-style image of two guys riding a Seadoo on the lake beside the cottage"
+          loading="lazy"
+        />
+      </div>
+    </section>
   </main>
 
   <style>
@@ -81,6 +102,60 @@ import rooms from "../content/rooms.json";
     }
 
     .section { margin-top: 30px; }
+    .seadooFeature {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 18px;
+      align-items: center;
+      padding: 18px;
+      border: 1px solid rgba(175, 103, 37, 0.26);
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at top left, rgba(209, 162, 97, 0.18), transparent 36%),
+        linear-gradient(135deg, rgba(248, 242, 229, 0.98), rgba(242, 234, 217, 0.96));
+      box-shadow: 0 14px 28px rgba(94, 68, 35, 0.07);
+    }
+    @media (max-width: 860px) {
+      .seadooFeature {
+        grid-template-columns: 1fr;
+      }
+    }
+    .featureCopy {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+    .eyebrow {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(131, 75, 25, 0.82);
+    }
+    .featureLead {
+      margin: 0;
+      max-width: 38ch;
+      color: rgba(48, 35, 18, 0.82);
+    }
+    .featureFine {
+      margin: 0;
+      max-width: 46ch;
+      color: rgba(73, 57, 34, 0.7);
+    }
+    .featureImage {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(128, 95, 49, 0.18);
+      background: rgba(255, 250, 240, 0.8);
+      box-shadow: 0 10px 24px rgba(96, 66, 29, 0.1);
+    }
+    .featureImage img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      aspect-ratio: 3 / 2;
+    }
     .sectionHead { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
     .sectionHead h2 { margin: 0; }
     .link { opacity: .85; text-decoration: none; }
