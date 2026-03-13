@@ -41,11 +41,14 @@ const { room } = Astro.props;
 
   <section class="details card">
     <h2>At a glance</h2>
-    <ul>
+    <dl class="specGrid">
       {room.details.map((item) => (
-        <li><b>{item.label}:</b> {item.value}</li>
+        <div class="specItem">
+          <dt>{item.label}</dt>
+          <dd>{item.value}</dd>
+        </div>
       ))}
-    </ul>
+    </dl>
 
     <div class="note">
       <p class="muted">
@@ -147,11 +150,39 @@ const { room } = Astro.props;
       font-size: 16px;
     }
 
-    .details ul {
+    .specGrid {
       margin: 0;
-      padding-left: 18px;
       display: grid;
-      gap: 6px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    @media (max-width: 720px) {
+      .specGrid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .specItem {
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(0, 0, 0, 0.02);
+    }
+
+    .specItem dt {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .specItem dd {
+      margin: 6px 0 0;
+      font-size: 15px;
+      line-height: 1.45;
     }
 
     .note {

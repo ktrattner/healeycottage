@@ -141,6 +141,61 @@ function isActive(href) {
     .layoutMain {
       padding: clamp(26px, 4vw, 36px) 0 64px;
     }
+
+    .siteFooter {
+      border-top: 1px solid var(--border);
+      background: linear-gradient(to bottom, rgba(0,0,0,.02), rgba(0,0,0,.035));
+    }
+
+    .footerInner {
+      padding: 20px 0 28px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .footerTop {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footerTitle {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    .footerNote {
+      margin: 0;
+      max-width: 72ch;
+    }
+
+    .footerLinks {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footerLinks a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.96rem;
+    }
+
+    .footerLinks a:hover {
+      color: var(--text);
+      text-decoration: underline;
+    }
+
+    .footerMeta {
+      margin: 0;
+      font-size: 0.95rem;
+      color: rgba(0, 0, 0, 0.62);
+    }
   </style>
 </head>
 <body>
@@ -169,5 +224,26 @@ function isActive(href) {
       <slot />
     </div>
   </main>
+
+  <footer class="siteFooter">
+    <div class="container">
+      <div class="footerInner">
+        <div class="footerTop">
+          <div>
+            <p class="footerTitle">Healey Cottage, Muskoka, Ontario, Canada</p>
+            <p class="fine footerNote">
+              A private booking site for invited guests of Kyle and Brandon. Requests are reviewed manually, and public calendars show busy blocks only.
+            </p>
+          </div>
+          <nav class="footerLinks" aria-label="Footer">
+            <a href="/rooms">Rooms</a>
+            <a href="/availability">Availability</a>
+            <a href="/request">Request</a>
+          </nav>
+        </div>
+        <p class="footerMeta">Hosted with care for weekends, lake days, and comfortable stays up north.</p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

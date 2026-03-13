@@ -32,18 +32,18 @@
   {
     "slug": "hufflepuff",
     "name": "Hufflepuff",
-    "sleeps": 2,
-    "summary": "Cozy queen room tucked beside the window. Ideal for solo travellers and comfortable for two.",
+    "sleeps": 4,
+    "summary": "Queen-sized bunk bed setup that sleeps up to four, while still feeling perfectly comfortable for two in the comfy sleeping nook.",
     "details": [
-      { "label": "Bed", "value": "Queen" },
-      { "label": "Best for", "value": "Solo travellers (comfortable for two)" },
-      { "label": "Bathroom", "value": "Shared hall bathroom (shower and toilet)" },
-      { "label": "Shared with", "value": "Ravenclaw guests" }
+      { "label": "Bed", "value": "Queen-sized bunk bed" },
+      { "label": "Best for", "value": "Up to four guests, or a roomy and comfortable stay for two" },
+      { "label": "Good pick for", "value": "Guests coming with kids, and probably the best room to choose if you are" },
+      { "label": "Bathroom", "value": "Shared hall bathroom (shower and toilet)" }
     ],
     "photos": [
       {
         "src": "/images/hufflepuff-nook.jpg",
-        "alt": "Hufflepuff bedroom nook with queen bed by the window",
+        "alt": "Hufflepuff sleeping nook with queen-sized bunk bed by the window",
         "caption": "Sleeping nook"
       },
       {
@@ -66,12 +66,11 @@
       { "label": "Bed", "value": "Queen" },
       { "label": "Best for", "value": "Couples" },
       { "label": "Bathroom", "value": "Shared hall bathroom (shower and toilet)" },
-      { "label": "Shared with", "value": "Hufflepuff guests" },
       { "label": "Room type", "value": "Corner room with lots of natural light" }
     ],
     "photos": [
       {
-        "src": "/images/ravenclaw-bed.jpg",
+        "src": "/images/ravenclaw-bedroom.jpg",
         "alt": "Ravenclaw bedroom with queen bed",
         "caption": "Bedroom"
       },
