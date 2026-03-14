@@ -2,7 +2,7 @@
 import Base from "../layouts/Base.astro";
 import rooms from "../content/rooms.json";
 const sent = Astro.url.searchParams.get("sent");
-const roomOptions = rooms.map(({ slug, name }) => ({ slug, name }));
+const roomOptions = rooms.map(({ slug, name, summary }) => ({ slug, name, summary }));
 ---
 
 <Base title="Request a stay | Healey Cottage">
@@ -29,52 +29,79 @@ const roomOptions = rooms.map(({ slug, name }) => ({ slug, name }));
       </label>
     </div>
     <input type="hidden" name="ts" id="tsField" value="" />
-    <div id="selectedRoomNotice" class="banner roomNotice" hidden></div>
+    <section class="formSection">
+      <div class="sectionHead">
+        <h2>Your details</h2>
+      </div>
 
-    <label>
-      Name
-      <input name="name" autocomplete="name" placeholder="Your name" required />
-    </label>
+      <div class="fieldGrid">
+        <label>
+          Name
+          <input id="nameField" name="name" autocomplete="name" placeholder="Your name" required />
+        </label>
 
-    <label>
-      Email
-      <input name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
-    </label>
+        <label>
+          Email
+          <input name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+        </label>
+      </div>
+    </section>
 
-    <label>
-      Room
-      <select id="roomSelect" name="room" required>
-        <option value="" disabled selected>Select a room</option>
-        {roomOptions.map((room) => (
-          <option value={room.name}>{room.name}</option>
-        ))}
-      </select>
-      <p class="help">Only busy blocks are shown publicly. Details stay private.</p>
-    </label>
+    <section class="formSection staySection">
+      <div class="sectionHead">
+        <h2>Stay details</h2>
+      </div>
 
-    <div class="dateRow">
+      <div class="stayPanel">
+        <div id="selectedRoomNotice" class="banner roomNotice" hidden></div>
+
+        <label>
+          Room
+          <select id="roomSelect" name="room" required>
+            <option value="" disabled selected>Select a room</option>
+            {roomOptions.map((room) => (
+              <option value={room.name}>{room.name}</option>
+            ))}
+          </select>
+          <p class="help">Only busy blocks are shown publicly. Details stay private.</p>
+          <p id="roomSummary" class="help roomSummary" hidden></p>
+        </label>
+
+        <div class="dateRow">
+          <label>
+            Check-in
+            <input id="checkInField" name="checkIn" type="date" required />
+          </label>
+
+          <label>
+            Check-out
+            <input id="checkOutField" name="checkOut" type="date" required />
+          </label>
+        </div>
+        <p class="help dateHelp">Check-out must be at least one day after check-in.</p>
+        <p id="staySummary" class="help staySummary" hidden></p>
+      </div>
+    </section>
+
+    <section class="formSection">
+      <div class="sectionHead">
+        <h2>Anything else</h2>
+      </div>
+
       <label>
-        Check-in
-        <input id="checkInField" name="checkIn" type="date" required />
+        Notes (optional)
+        <textarea name="notes" rows="4" placeholder="Travel timing, flexibility, who’s coming, or anything that would help us review the request."></textarea>
       </label>
+    </section>
 
-      <label>
-        Check-out
-        <input id="checkOutField" name="checkOut" type="date" required />
-      </label>
+    <div class="submitArea">
+      <button type="submit" class="btn primary">Submit request</button>
+      <p class="help submitHelp">This sends a request, not a confirmed booking. We usually reply within a couple of days.</p>
+      <p class="muted disclaimer">
+        This is a private booking site for friends and family of Kyle and Brandon.
+        If we sent you the link, you’re invited. If you found this by accident, we admire the initiative, but it’s probably a no.
+      </p>
     </div>
-    <p class="help dateHelp">Check-out must be at least one day after check-in.</p>
-
-    <label>
-      Notes (optional)
-      <textarea name="notes" rows="4" placeholder="Anything we should know? Timing flexibility, special requests, etc."></textarea>
-    </label>
-
-    <button type="submit" class="btn primary">Submit request</button>
-    <p class="muted disclaimer">
-      This is a private booking site for friends and family of Kyle and Brandon.
-      If we sent you the link, you’re invited. If you found this by accident, we admire the initiative, but it’s probably a no.
-    </p>
   </form>
 
   <script is:inline define:vars={{ roomOptions }}>
@@ -82,12 +109,15 @@ const roomOptions = rooms.map(({ slug, name }) => ({ slug, name }));
       const select = document.getElementById("roomSelect");
       if (!select) return;
 
+      const nameField = document.getElementById("nameField");
       const ts = document.getElementById("tsField");
       if (ts) ts.value = String(Date.now());
 
       const checkIn = document.getElementById("checkInField");
       const checkOut = document.getElementById("checkOutField");
       const selectedRoomNotice = document.getElementById("selectedRoomNotice");
+      const roomSummary = document.getElementById("roomSummary");
+      const staySummary = document.getElementById("staySummary");
 
       const toIsoDate = (date) => {
         const year = date.getFullYear();
@@ -100,6 +130,58 @@ const roomOptions = rooms.map(({ slug, name }) => ({ slug, name }));
         const [year, month, day] = isoDate.split("-").map(Number);
         const next = new Date(year, month - 1, day + days);
         return toIsoDate(next);
+      };
+
+      const countNights = (startIso, endIso) => {
+        const [startYear, startMonth, startDay] = startIso.split("-").map(Number);
+        const [endYear, endMonth, endDay] = endIso.split("-").map(Number);
+        const start = new Date(startYear, startMonth - 1, startDay);
+        const end = new Date(endYear, endMonth - 1, endDay);
+        const diff = end.getTime() - start.getTime();
+        return Math.round(diff / 86400000);
+      };
+
+      const isLetter = (value) => /\p{L}/u.test(value);
+
+      const formatNamePiece = (piece) => {
+        const letters = Array.from(piece).filter(isLetter).join("");
+        if (!letters) return piece;
+
+        const isUniformCase =
+          letters === letters.toLowerCase() || letters === letters.toUpperCase();
+
+        if (!isUniformCase) return piece;
+        if (piece.length === 1) return piece.toUpperCase();
+
+        return piece.charAt(0).toUpperCase() + piece.slice(1).toLowerCase();
+      };
+
+      const formatNameWord = (word) =>
+        word
+          .split(/([-'’])/)
+          .map((part) => (part === "-" || part === "'" || part === "’" ? part : formatNamePiece(part)))
+          .join("");
+
+      const gentlyFormatName = (value) =>
+        value
+          .trim()
+          .replace(/\s+/g, " ")
+          .split(" ")
+          .map(formatNameWord)
+          .join(" ");
+
+      const syncRoomSummary = () => {
+        if (!roomSummary) return;
+
+        const selected = (roomOptions || []).find((room) => room.name === select.value);
+        if (!selected) {
+          roomSummary.hidden = true;
+          roomSummary.textContent = "";
+          return;
+        }
+
+        roomSummary.hidden = false;
+        roomSummary.textContent = selected.summary;
       };
 
       const today = toIsoDate(new Date());
@@ -118,10 +200,29 @@ const roomOptions = rooms.map(({ slug, name }) => ({ slug, name }));
 
         const invalid = Boolean(checkIn.value && checkOut.value && checkOut.value <= checkIn.value);
         checkOut.setCustomValidity(invalid ? "Check-out must be after check-in." : "");
+
+        if (!staySummary) return;
+
+        const hasCompleteRange = Boolean(checkIn.value && checkOut.value && !invalid);
+        if (!hasCompleteRange) {
+          staySummary.hidden = true;
+          staySummary.textContent = "";
+          return;
+        }
+
+        const nights = countNights(checkIn.value, checkOut.value);
+        staySummary.hidden = false;
+        staySummary.textContent = `${nights} night${nights === 1 ? "" : "s"} requested.`;
       };
 
       checkIn?.addEventListener("input", syncDates);
       checkOut?.addEventListener("input", syncDates);
+      select.addEventListener("input", syncRoomSummary);
+      nameField?.addEventListener("blur", () => {
+        if (!nameField.value.trim()) return;
+        nameField.value = gentlyFormatName(nameField.value);
+      });
+      syncRoomSummary();
       syncDates();
 
       const params = new URLSearchParams(window.location.search);
@@ -148,6 +249,7 @@ const roomOptions = rooms.map(({ slug, name }) => ({ slug, name }));
         selectedRoomNotice.hidden = false;
         selectedRoomNotice.textContent = `Requesting ${desired}. You can still change the room below.`;
       }
+      syncRoomSummary();
     })();
   </script>
 
@@ -173,21 +275,50 @@ const roomOptions = rooms.map(({ slug, name }) => ({ slug, name }));
     .form {
       margin-top: 14px;
       display: grid;
-      gap: 12px;
-      max-width: 640px;
+      gap: 18px;
+      max-width: 720px;
+      margin-inline: auto;
     }
     .intro {
       margin: 10px 0 0;
       max-width: 62ch;
+    }
+    h1,
+    .banner,
+    .intro {
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .form,
     .form * {
       box-sizing: border-box;
     }
 
+    .formSection {
+      display: grid;
+      gap: 12px;
+    }
+
+    .sectionHead {
+      display: grid;
+      gap: 3px;
+    }
+
+    .sectionHead h2 {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.25;
+    }
+
+    .fieldGrid {
+      display: grid;
+      gap: 12px;
+    }
+
     label {
       display: grid;
-      gap: 6px;
+      gap: 5px;
       font-weight: 600;
       font-size: 14px;
     }
@@ -201,11 +332,22 @@ const roomOptions = rooms.map(({ slug, name }) => ({ slug, name }));
     .help {
       margin: 6px 0 0;
       font-weight: 400;
-      font-size: 13px;
-      color: var(--muted);
+      font-size: 12.75px;
+      color: rgba(0, 0, 0, 0.56);
+    }
+    .roomSummary {
+      margin-top: 8px;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: rgba(0, 0, 0, 0.72);
     }
     .dateHelp {
       margin-top: -2px;
+    }
+    .staySummary {
+      margin-top: 0;
+      font-size: 13.5px;
+      color: rgba(0, 0, 0, 0.72);
     }
 
     .dateRow {
@@ -217,17 +359,40 @@ const roomOptions = rooms.map(({ slug, name }) => ({ slug, name }));
       .dateRow { grid-template-columns: 1fr; }
     }
 
+    .stayPanel {
+      display: grid;
+      gap: 12px;
+      padding: 14px;
+      border: 1px solid rgba(159, 121, 67, 0.18);
+      border-radius: 16px;
+      background:
+        linear-gradient(180deg, rgba(251, 248, 242, 0.96), rgba(247, 241, 232, 0.92));
+    }
+
     .form .btn {
-      justify-self: start;
+      align-self: start;
       width: fit-content;
       padding: 12px 18px;
       font-size: 15px;
     }
 
+    .submitArea {
+      display: grid;
+      gap: 8px;
+      padding-top: 4px;
+    }
+
+    .submitHelp {
+      margin: 0;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.62);
+    }
+
     .disclaimer {
-      margin-top: 10px;
+      margin: 2px 0 0;
       font-size: 12.5px;
       line-height: 1.45;
+      color: rgba(0, 0, 0, 0.56);
     }
 
     .hp {
