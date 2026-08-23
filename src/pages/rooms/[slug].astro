@@ -10,9 +10,14 @@ export function getStaticPaths() {
 }
 
 const { room } = Astro.props;
+const socialImage = room.photos.find((photo) => photo.src)?.src;
 ---
 
-<Base title={`${room.name} | Healey Cottage`}>
+<Base
+  title={`${room.name} | Healey Cottage`}
+  description={room.summary}
+  image={socialImage}
+>
   <header class="head">
     <div>
       <h1>{room.name}</h1>

@@ -5,7 +5,10 @@ const sent = Astro.url.searchParams.get("sent");
 const roomOptions = rooms.map(({ slug, name, summary }) => ({ slug, name, summary }));
 ---
 
-<Base title="Request a stay | Healey Cottage">
+<Base
+  title="Request a stay | Healey Cottage"
+  description="Request a private stay at Healey Cottage; all requests are reviewed manually and confirmed by email."
+>
   <h1>Request a stay</h1>
   {sent && (
     <div class="banner success" role="status" aria-live="polite">
@@ -105,6 +108,7 @@ const roomOptions = rooms.map(({ slug, name, summary }) => ({ slug, name, summar
   </form>
 
   <script is:inline define:vars={{ roomOptions }}>
+    /* global roomOptions */
     (() => {
       const select = document.getElementById("roomSelect");
       if (!select) return;

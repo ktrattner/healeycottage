@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://healeycottage.com/sitemap-index.xml

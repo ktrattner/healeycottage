@@ -2,11 +2,27 @@
   "name": "healeycottage",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": "^22.22.3 || ^24.16.0 || >=26.3.0"
+  },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build"
+    "build": "astro build",
+    "check": "astro check",
+    "lint": "eslint \"src/**/*.{js,astro,gs}\" \"tests/**/*.mjs\" \"scripts/**/*.mjs\" \"*.mjs\"",
+    "test": "node --test",
+    "verify:build": "node scripts/verify-build.mjs"
   },
   "dependencies": {
-    "astro": "^5.16.7"
+    "@astrojs/sitemap": "^3.7.3",
+    "astro": "^7.2.4"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.9.0",
+    "eslint-plugin-astro": "~3.1.0",
+    "globals": "^17.11.0",
+    "typescript": "^6.0.3"
   }
 }

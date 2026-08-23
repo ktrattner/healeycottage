@@ -4,8 +4,10 @@ import RoomCard from "../components/RoomCard.astro";
 import rooms from "../content/rooms.json";
 ---
 
-<Base title="Healey Cottage">
-  <main>
+<Base
+  title="Healey Cottage"
+  description="Check Healey Cottage availability, explore guest rooms, and request a private stay in Muskoka."
+>
     <section class="hero">
       <div class="heroText">
         <h1>Stay at Healey Cottage</h1>
@@ -77,8 +79,6 @@ import rooms from "../content/rooms.json";
         />
       </div>
     </section>
-  </main>
-
   <style>
     .hero { margin-top: 12px; }
     .hero { display: grid; gap: 18px; grid-template-columns: 1.35fr 0.65fr; align-items: start; }
