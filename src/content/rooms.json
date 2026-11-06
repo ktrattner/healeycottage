@@ -42,12 +42,14 @@
     ],
     "photos": [
       {
-        "src": "/images/hufflepuff-nook.jpg",
-        "alt": "Hufflepuff sleeping nook with queen-sized bunk bed by the window",
-        "caption": "Sleeping nook"
+        "src": "/images/hufflepuff-bunk-beds.jpg",
+        "alt": "Hufflepuff queen-sized bunk beds with a wooden ladder and curtained sleeping nook",
+        "caption": "Queen-sized bunk beds"
       },
       {
-        "caption": "Coming Soon"
+        "src": "/images/hufflepuff-sleeping-nook.jpg",
+        "alt": "Hufflepuff sleeping nook with green bedding and a window overlooking the trees",
+        "caption": "Sleeping nook"
       },
       {
         "src": "/images/hall-bathroom.jpg",
