@@ -72,12 +72,14 @@
     ],
     "photos": [
       {
-        "src": "/images/ravenclaw-bedroom.jpg",
-        "alt": "Ravenclaw bedroom with queen bed",
-        "caption": "Bedroom"
+        "src": "/images/ravenclaw-queen-bedroom.jpg",
+        "alt": "Ravenclaw bedroom with a queen bed, bookcase, wooden dresser, and brass chandelier",
+        "caption": "Queen bedroom"
       },
       {
-        "caption": "Coming Soon"
+        "src": "/images/ravenclaw-sitting-area.jpg",
+        "alt": "Ravenclaw sitting area with an armchair, flowers by the window, and a wooden dresser and mirror",
+        "caption": "Sitting area"
       },
       {
         "src": "/images/hall-bathroom.jpg",
